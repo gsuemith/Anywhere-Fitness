@@ -1,14 +1,17 @@
-import Banner from "./components/Banner";
+import { Route, Switch } from "react-router";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Menu from "./components/Menu";
+import Home from "./Routes/Home/Home";
 
 
 function App() {
   return (
     < >
       <Header />
-      <Menu />
-      <Banner />
+      <Switch>
+        <Route path="/" component={Home}/>
+      </Switch>
+      <Footer />
     </>
   );
 }
