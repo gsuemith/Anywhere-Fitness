@@ -3,7 +3,6 @@ import React from 'react'
 const PT = () => {
   return (
    <section id="two">
-      {/* <!-- Two --> */}
     <div className="inner">
       <header className="major">
         <h2>Personal Training</h2>

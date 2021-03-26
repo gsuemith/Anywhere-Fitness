@@ -7,17 +7,12 @@ import Tiles from './Tiles'
 const Home = () => {
   return (
     < >
-      <Banner/>
-
-      {/* <!-- Main --> */}
-					<div id="main">
-            <Tiles />
-
-
-            <PT/>
-					</div>
-
-      <Contact/>
+    <Banner/>
+      <div id="main">
+        <Tiles />
+        <PT/>
+      </div>
+    <Contact/>
     </>
   )
 }
