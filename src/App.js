@@ -7,7 +7,7 @@ import Home from "./Routes/Home/Home";
 function App() {
   return (
     < >
-      {/* <Header /> */}
+      <Header />
       <Switch>
         <Route path="/" component={Home}/>
       </Switch>
