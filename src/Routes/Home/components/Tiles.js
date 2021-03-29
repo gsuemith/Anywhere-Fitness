@@ -3,15 +3,15 @@ import ClassOffering from './ClassOffering'
 
 const classes = [
   {
-    image: "images/pic01.jpg", title: "Yoga", 
+    image: "images/fitness.jpg", title: "Yoga", 
     text: "Ipsum dolor sit amet"
   },
   {
-    image: "images/pic02.jpg", title: "Calisthenics", 
+    image: "images/fitness2.jpg", title: "Calisthenics", 
     text: "feugiat amet tempus"
   },
   {
-    image: "images/pic03.jpg", title: "Zumba", 
+    image: "images/fitness3.jpg", title: "Zumba", 
     text: "Lorem etiam nullam"
   },
   {
@@ -23,7 +23,7 @@ const classes = [
     text: "Ipsum dolor sit amet"
   },
   {
-    image: "images/pic06.jpg", title: "Boxing", 
+    image: "images/fitness4.jpg", title: "Boxing", 
     text: "Feugiat amet tempus"
   },
 ]

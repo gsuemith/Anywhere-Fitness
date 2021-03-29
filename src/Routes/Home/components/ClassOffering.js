@@ -4,8 +4,8 @@ const ClassOffering = ({ fitClass }) => {
   const { image, title, text } = fitClass
   
   return (
-  <article>
-    <span className="image">
+  <article style={{backgroundImage: `url(${image})`}}>
+    <span className="image" style={{display: "none"}}>
       <img src={image} alt="" />
     </span>
     <header className="major">

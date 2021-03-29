@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Home from "./Routes/Home/Home";
+import Home from "./routes/home/Home";
 
 
 function App() {
