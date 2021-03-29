@@ -1,8 +1,11 @@
 import { Route, Switch } from "react-router";
+
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Home from "./routes/home/Home";
+
 import { PrivateRoute } from "./utils/PrivateRoute";
+
+import Home from "./routes/home/Home";
 import Client from "./routes/client/Client";
 import Register from "./routes/register/Register"
 import Login from "./routes/login/Login"
