@@ -1,10 +1,15 @@
 import React from 'react'
+import Banner from './components/Banner'
+
+import axiosWithAuth from '../../utils/axiosWithAuth'
+import ClassForm from './components/ClassForm'
 
 const Instructor = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <Banner N={3}/>
+      <ClassForm />
+    </>
   )
 }
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
+import { connect, useSelector } from 'react-redux'
+
 import Banner from './components/Banner'
 import SearchForm from './components/SearchForm'
 import Schedule from './components/Schedule'
-
-import { connect, useSelector } from 'react-redux'
 
 import { getClasses } from '../../actions'
 
@@ -12,12 +12,9 @@ const Classes = ({ getClasses }) => {
 
   // fetch api classes
   useEffect(() => {
-    getClasses()
-  }, [getClasses])
-
-  // useEffect(() => {
-  //   console.log(classes)
-  // }, [classes])
+    if (classes.length === 0)
+      getClasses()
+  }, [getClasses, classes])
 
   return (
     <>

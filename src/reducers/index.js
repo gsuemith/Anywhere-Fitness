@@ -15,7 +15,8 @@ const reducer = (state = initialState, { type, payload }) => {
     ...state,
     isFetching: false,
     error: '',
-    classes: payload
+    classes: payload.classes,
+    locations: payload.locations
   }
 
   case FETCH_CLASSES_FAIL: return {

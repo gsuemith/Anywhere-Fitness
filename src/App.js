@@ -18,18 +18,16 @@ function App() {
 		<>
 			<Header />
 			<Switch>
-				<PrivateRoute path="/instructor">
-					<Instructor />
-				</PrivateRoute>
-				<PrivateRoute path="/client">
-					<Client />
-				</PrivateRoute>
-				<Route path="/classes">
-					<Classes />
-				</Route>
+				<PrivateRoute path="/instructor" component={Instructor} />
+		
+				<PrivateRoute path="/client" component={Client} />
+				
+				<Route path="/classes" component={Classes} />
+					
 				<Route path="/register" component={Register} />
 				<Route path="/login" component={Login}/>
 				<Route path="/" component={Home} />
+
 			</Switch>
 			<Footer />
 		</>
