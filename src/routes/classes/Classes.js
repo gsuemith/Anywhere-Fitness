@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Banner from './components/Banner'
+import SearchForm from './components/SearchForm'
+import Schedule from './components/Schedule'
 
-const Classes = () => {
+import { connect, useSelector } from 'react-redux'
+
+import { getClasses } from '../../actions'
+
+const Classes = ({ getClasses }) => {
+  const classes = useSelector(state => state.classes)
+
+  // fetch api classes
+  useEffect(() => {
+    getClasses()
+  }, [getClasses])
+
+  useEffect(() => {
+    console.log(classes)
+  }, [classes])
+
   return (
-    <div>
-      
-    </div>
+    <>
+      <Banner N={2}/>
+      <SearchForm />
+      <Schedule />
+    </>
   )
 }
 
-export default Classes
+
+export default connect(null, {
+  getClasses
+})(Classes)

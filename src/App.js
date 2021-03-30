@@ -9,6 +9,7 @@ import Home from "./routes/home/Home";
 import Client from "./routes/client/Client";
 import Register from "./routes/register/Register"
 import Login from "./routes/login/Login"
+import Classes from "./routes/classes/Classes"
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
 				<PrivateRoute exact path="/client">
 					<Client />
 				</PrivateRoute>
+				<Route path="/classes">
+					<Classes />
+				</Route>
 				<Route path="/register" component={Register} />
 				<Route path="/login" component={Login}/>
 				<Route path="/" component={Home} />

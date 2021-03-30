@@ -8,7 +8,7 @@ import Tiles from './components/Tiles'
 const Home = () => {
   return (
     < >
-    <Banner/>
+    <Banner major={true}/>
       <div id="main">
         <Tiles />
         <PT/>

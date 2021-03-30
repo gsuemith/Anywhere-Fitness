@@ -8,7 +8,7 @@ const Menu = () => {
 		<div className="inner">
 			<ul className="links">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="/">Home</a>
 				</li>
 				<li>
 					<a href="landing.html">Landing</a>
@@ -17,7 +17,7 @@ const Menu = () => {
 					<a href="generic.html">Generic</a>
 				</li>
 				<li>
-					<a href="elements.html">Elements</a>
+					<a href="/classes">Classes</a>
 				</li>
 			</ul>
 			<ul className="actions stacked">
