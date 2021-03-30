@@ -15,9 +15,9 @@ const Classes = ({ getClasses }) => {
     getClasses()
   }, [getClasses])
 
-  useEffect(() => {
-    console.log(classes)
-  }, [classes])
+  // useEffect(() => {
+  //   console.log(classes)
+  // }, [classes])
 
   return (
     <>
