@@ -6,14 +6,16 @@ const initialState = {
   attending: [],
   enrolling: [],
   createClassForm: {
-    sport: '',
+    name: '',
+    type: '',
     level: '',
     location: '',
     dateTime: '',
     duration: 0,
   },
   searchForm: {
-    sport: '',
+    instructor: '',
+    type: '',
     level: '',
     location: '',
     startDateTime: '',

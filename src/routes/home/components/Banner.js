@@ -1,9 +1,15 @@
 import React from 'react'
 
 
-const Banner = () => {
+const Banner = ({ major, style }) => {
+  const styleN = N => {
+    return N ? " style" + N : ""
+  }
+
   return (
-  <section id="banner" className="major">
+  <section id="banner" 
+    className={`${major && "major"}${styleN(style)}`}
+  >
     <div className="inner">
       <header className="major">
         <h1>Anywhere Fitness</h1>
