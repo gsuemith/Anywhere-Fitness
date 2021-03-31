@@ -15,11 +15,11 @@ const initialFormValues = {
 	const [disabled, setDisabled] = useState(initialDisabled);
 	const [formValues, setFormValues] = useState(initialFormValues);
 	const [formErrors, setFormErrors] = useState(initialFormErrors);
-  
+  }
 
 
 const Login = () => {
-	const [initialFormValues, setCredentials] = useState(initialState);
+	const [credentials, setCredentials] = useState(initialFormValues);
 	const handleChange = e => {
 
 	}
@@ -29,11 +29,11 @@ const Login = () => {
       <div className="fields">
         <div className="field half">
           <label htmlFor="name">Email:</label>
-          <input type="text" name="email" id="email" value={formValues.email} />
+          <input type="text" name="email" id="email" value={credentials.email} />
         </div>
         <div className="field half">
           <label htmlFor="email">Password:</label>
-          <input type="text" name="password" id="password" value={formValues.password} />
+          <input type="text" name="password" id="password" value={credentials.password} />
         </div>
         {/* <div className="field">
           <label htmlFor="message">Message</label>
