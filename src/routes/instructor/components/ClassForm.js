@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 
-import { getClasses } from '../../../actions'
+import { getClasses, postClass } from '../../../actions'
 import { CHANGE_CLASS_FORM } from '../../../actions'
 
-const levels = ['Beginner', 'Beginner-Itermediate', 
+const dateOptions = {
+  month:'numeric', day:'numeric', year:'numeric'
+}
+const timeOptions = {
+  hour: 'numeric', minute:'2-digit', hour12:true
+}
+
+const levels = ['Beginner', 'Beginner-Intermediate', 
   'Intermediate', 'Intermediate-Advanced', 'Advanced']
 
-const ClassForm = ({ getClasses }) => {
+const ClassForm = ({ getClasses, postClass }) => {
   const classes = useSelector(state => state.classes)
   const locations = useSelector(state => state.locations)
   const form = useSelector(state => state.createClassForm)
   const [classTypes, setClassTypes] = useState([])
+  const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
 
@@ -26,6 +34,7 @@ const ClassForm = ({ getClasses }) => {
       }
       return types
     }, []))
+    console.log(classes)
   }, [getClasses, classes, locations])
 
   // to set earliest time to 12 hours from now
@@ -45,7 +54,32 @@ const ClassForm = ({ getClasses }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(form)
+    
+    const formIsValid = Object.keys(form).reduce((isValid, name)=>{
+      return isValid = isValid && form[name]
+    }, true)
+
+    if (formIsValid){
+      const { name, type, level, duration, classSize } = form
+      const newClass = { 
+        name, type, level, classSize, attendees: 0
+      }
+      newClass.duration = duration >= 60 ?
+        `${duration/60} hours` : `${duration} minutes`;
+
+      const { location, dateTime } = form
+      const fullDate = new Date(dateTime);
+      const newLocation = {
+        location, 
+        date: fullDate.toLocaleDateString('en-US', dateOptions),
+        startTime: fullDate.toLocaleTimeString('en-US', timeOptions)
+      }
+
+      postClass(newClass, newLocation);
+      setErrorMessage('');
+    } else {
+      setErrorMessage('Please make sure all fields are filled.')
+    }
   }
 
   return (
@@ -107,6 +141,7 @@ const ClassForm = ({ getClasses }) => {
     <ul className="actions">
       <li><input type="submit" value="Submit" className="primary" /></li>
       <li><input type="reset" value="Clear" /></li>
+      <li>{errorMessage && <h4>{errorMessage}</h4>}</li>
     </ul>
   </form>
   </section>
@@ -115,4 +150,4 @@ const ClassForm = ({ getClasses }) => {
   )
 }
 
-export default connect(null, { getClasses })(ClassForm)
+export default connect(null, { getClasses, postClass })(ClassForm)
