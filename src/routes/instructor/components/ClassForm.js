@@ -19,7 +19,6 @@ const ClassForm = ({ getClasses }) => {
     if (classes.length === 0){
       getClasses()
     }
-
     //extract list of class types from classes
     setClassTypes(classes.reduce((types, curr) => {
       if (!types.includes(curr.type)){
