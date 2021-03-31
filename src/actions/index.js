@@ -22,11 +22,12 @@ export const getClasses = () => dispatch => {
   ])
   .then(axios.spread((...res) => {
     // join locations with classes
-    const classes = res[0].data.map(fitClass => ({
-      ...fitClass, ...res[1].data.find(location => {
+    const classes = res[0].data.map(fitClass => {
+      const { location, date, startTime} = res[1].data.find(location => {
         return fitClass.location === location.id
       })
-    }))
+      return { ...fitClass, location, date, startTime }
+    })
 
     dispatch({
       type: FETCH_CLASSES_SUCCESS, 
