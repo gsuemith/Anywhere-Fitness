@@ -1,57 +1,61 @@
-import React, { useState } from "react";
-// import "../login.css";
+
+
+import React, {useState} from "react";
+
+const initialFormValues = {
+	email: "",
+	password: "",
+  };
+  
+  const initialFormErrors = {
+	email: "",
+	password: "",
+  };
+  const initialDisabled = true;
+  
+  function SignIn(props) {
+	const [disabled, setDisabled] = useState(initialDisabled);
+	const [formValues, setFormValues] = useState(initialFormValues);
+	const [formErrors, setFormErrors] = useState(initialFormErrors);
+  }
+
 
 const Login = () => {
-	const [state, setState] = useState({
-		username: "",
-		password: "",
-		errorMessage: "",
-	});
+	const [credentials, setCredentials] = useState(initialFormValues);
+	const handleChange = e => {
 
-	const handleChange = (e) => {
-		setState({
-			...state,
-			[e.target.name]: e.target.value,
-		});
-	};
+	}
+	return( 
+	<section>
+    <form method="post" action="#">
+      <div className="fields">
+        <div className="field half">
+          <label htmlFor="name">Email:</label>
+          <input type="text" name="email" id="email" value={credentials.email} />
+        </div>
+        <div className="field half">
+          <label htmlFor="email">Password:</label>
+          <input type="text" name="password" id="password" value={credentials.password} />
+        </div>
+        {/* <div className="field">
+          <label htmlFor="message">Message</label>
+          <textarea name="message" id="message" rows="6"></textarea>
+        </div> */}
+      </div>
+      {/* <ul className="actions">
+        <li><input type="submit" value="Send Message" className="primary" /></li>
+        <li><input type="reset" value="Clear" /></li>
+      </ul> */}
+    </form>
+  </section>)
+		// <form>
+		// <h1>Login</h1>
+		// <input type='text' name = "username" value = {credentials.username} onChange = {handleChange}/>
+		// </form>);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (state.username === "" || state.password === "") {
-			return setState({
-				errorMessage: "Name, position and nickname fields are required.",
-			});
-		}
-	};
-
-	return (
-		<form classname="loginForm" onSubmit={handleSubmit}>
-			<div className="form-group">
-				<label className="username">Username: </label>
-				<br />
-				<input
-					type="text"
-					onChange={handleChange}
-					value={state.username}
-					name="username"
-					id="username"
-				/>
-			</div>
-			<div className="form-group">
-				<label className="password">Password: </label>
-				<br />
-				<input
-					type="password"
-					onChange={handleChange}
-					value={state.password}
-					name="password"
-					id="password"
-				/>
-			</div>
-			<button className="loginBTN" onSubmit={handleSubmit} type="submit">
-				Login
-			</button>
-		</form>
-	);
 };
 export default Login;
+
+// axios call to post credentials on submit
+// handle change function 
+// add submit button 
