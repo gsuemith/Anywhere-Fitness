@@ -1907,6 +1907,7 @@ input, select, textarea {
 	input[type="url"],
 	input[type="number"],
 	input[type="datetime-local"],
+	input[list="locations"],
 	select,
 	textarea {
 		-moz-appearance: none;

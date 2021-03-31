@@ -11,6 +11,12 @@ const Menu = () => {
 					<a href="/">Home</a>
 				</li>
 				<li>
+					<a href="/client">Trainees</a>
+				</li>
+				<li>
+					<a href="/instructor">Instructors</a>
+				</li>
+				<li>
 					<a href="landing.html">Landing</a>
 				</li>
 				<li>

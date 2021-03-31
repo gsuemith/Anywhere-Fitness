@@ -1,5 +1,5 @@
 export const initialState = {
-  user: {},
+  user: null,
 //   ex: {
 //     "id": 1,
 //     "username": "DavidGoggins"
@@ -32,7 +32,8 @@ export const initialState = {
     level: '',
     location: '',
     dateTime: '',
-    duration: 0,
+    classSize: '',
+    duration: '',
   },
   searchForm: {
     type: '',
