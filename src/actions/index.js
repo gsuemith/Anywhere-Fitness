@@ -4,9 +4,11 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 export const URL = 'https://anywherefitness-tt16.herokuapp.com/api'
 
 export const CHANGE_CLASS_FORM = "CHANGE_CLASS_FORM"
+export const CLEAR_CLASS_FORM = "CLEAR_CLASS_FORM"
 
 export const POST_CLASS_START = "POST_CLASS_START"
 export const POST_CLASS_SUCCESS = "POST_CLASS_SUCCESS"
+export const POST_CLASS_LOCATION = "POST_CLASS_LOCATION"
 export const POST_CLASS_FAIL = "POST_CLASS_FAIL"
 
 export const FETCH_CLASSES_START = "FETCH_CLASSES_START"
@@ -23,10 +25,11 @@ export const postClass = (newClass, newLocation) => dispatch => {
   console.log(newClass, newLocation)
   axiosWithAuth().post(`${URL}/locations`, newLocation)
   .then(res => {
-    return res.data.id
+    return res.data
   })
-  .then(locationId => {
-    newClass.location = locationId
+  .then(location => {
+    dispatch({type:POST_CLASS_LOCATION, payload: location})
+    newClass.location = location.id
     return axiosWithAuth()
       .post(`${URL}/classes`, newClass)
   })

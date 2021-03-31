@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
 
-import { getClasses, postClass } from '../../../actions'
+import { CLEAR_CLASS_FORM, getClasses, postClass } from '../../../actions'
 import { CHANGE_CLASS_FORM } from '../../../actions'
 
 const dateOptions = {
@@ -19,6 +19,7 @@ const ClassForm = ({ getClasses, postClass }) => {
   const locations = useSelector(state => state.locations)
   const form = useSelector(state => state.createClassForm)
   const [classTypes, setClassTypes] = useState([])
+  const [locationNames, setLocationNames] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
@@ -34,8 +35,17 @@ const ClassForm = ({ getClasses, postClass }) => {
       }
       return types
     }, []))
+
+    //reduce locations to location names
+    setLocationNames(locations.reduce((names, loc) => {
+      if (!names.includes(loc.location)){
+        return [...names, loc.location]
+      }
+      return names
+    }, []))
     console.log(classes)
   }, [getClasses, classes, locations])
+
 
   // to set earliest time to 12 hours from now
   const after12Hours = () => {
@@ -64,8 +74,11 @@ const ClassForm = ({ getClasses, postClass }) => {
       const newClass = { 
         name, type, level, classSize, attendees: 0
       }
-      newClass.duration = duration >= 60 ?
-        `${duration/60} hours` : `${duration} minutes`;
+      newClass.duration = duration >= 60 
+        ?
+        `${duration/60} hour${duration > 60 ? 's':''}` 
+        : 
+        `${duration} minutes`;
 
       const { location, dateTime } = form
       const fullDate = new Date(dateTime);
@@ -77,6 +90,7 @@ const ClassForm = ({ getClasses, postClass }) => {
 
       postClass(newClass, newLocation);
       setErrorMessage('');
+      dispatch({type: CLEAR_CLASS_FORM})
     } else {
       setErrorMessage('Please make sure all fields are filled.')
     }
@@ -108,8 +122,8 @@ const ClassForm = ({ getClasses, postClass }) => {
         <input type="text" list="locations" name="location" id="location" onChange={handleChange} value={form.location}/>
         <datalist id="locations">
           {
-            locations.map(location => (
-              <option value={location.location} key={location.id}/>
+            locationNames.map((location, i) => (
+              <option value={location} key={i}/>
             ))
           }
         </datalist>
