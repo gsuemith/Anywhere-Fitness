@@ -9,7 +9,7 @@ const Banner = ({ major, N }) => {
   return (
   <section id="banner" 
     className={`${major && "major"}${styleN(N)}`}
-    style={{backgroundImage: "url('images/fitness.jpg')"}}
+    style={{backgroundImage: "url('images/fitness4.jpg')"}}
   >
     <div className="inner">
       <header className="major">

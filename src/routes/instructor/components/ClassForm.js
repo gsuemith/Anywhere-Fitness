@@ -4,6 +4,8 @@ import { connect, useSelector, useDispatch } from 'react-redux'
 import { getClasses } from '../../../actions'
 import { CHANGE_CLASS_FORM } from '../../../actions'
 
+const levels = ['Beginner', 'Beginner-Itermediate', 
+  'Intermediate', 'Intermediate-Advanced', 'Advanced']
 
 const ClassForm = ({ getClasses }) => {
   const classes = useSelector(state => state.classes)
@@ -18,14 +20,24 @@ const ClassForm = ({ getClasses }) => {
       getClasses()
     }
 
+    //extract list of class types from classes
     setClassTypes(classes.reduce((types, curr) => {
       if (!types.includes(curr.type)){
         return [...types, curr.type]
       }
       return types
     }, []))
-    console.log(classes)
   }, [getClasses, classes, locations])
+
+  // to set earliest time to 12 hours from now
+  const after12Hours = () => {
+    let later = Date.now() + 12*3600*1000;
+    later = (new Date(later))
+      .toISOString()
+      .slice(0, 14);
+    
+    return later + '00'
+  }
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -71,11 +83,18 @@ const ClassForm = ({ getClasses }) => {
       </div>
       <div className="field half">
         <label htmlFor="dateTime">Date and Time</label>
-        <input type="datetime-local" name="dateTime" id="dateTime" min={Date()} onChange={handleChange} value={form.dateTime}/>
+        <input type="datetime-local" name="dateTime" id="dateTime" min={after12Hours()} onChange={handleChange} value={form.dateTime || after12Hours()}/>
       </div>
       <div className="field half">
         <label htmlFor="level">Level</label>
-        <input type="text" name="level" id="level" onChange={handleChange} value={form.level}/>
+        <input type="text" list="levels" name="level" id="level" onChange={handleChange} value={form.level}/>
+        <datalist id="levels">
+          {
+            levels.map((level, i) => (
+              <option value={level} key={i}/>
+            ))
+          }
+        </datalist>
       </div>
       <div className="field quarter">
         <label htmlFor="duration">Duration</label>
