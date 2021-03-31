@@ -17,9 +17,6 @@ const Banner = ({ major, N }) => {
       </header>
       <div className="content">
         <p>Dear Instructor,<br/><br/>Anywhere Fitness cannot happen without you!<br/><br/>Schedule a class below and let us take care of<br/>getting you clients and getting you paid.</p>
-        <ul className="actions">
-          <li><a href="#one" className="button next scrolly">Get Started</a></li>
-        </ul>
       </div>
     </div>
   </section>

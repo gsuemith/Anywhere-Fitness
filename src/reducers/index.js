@@ -1,9 +1,16 @@
-import { FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS } from '../actions'
+import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS } from '../actions'
 
 import { initialState } from './initialState'
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+
+  case CHANGE_CLASS_FORM: return {
+    ...state,
+    createClassForm: {
+      ...state.createClassForm, [payload.name]: payload.value
+    }
+  }
 
   case FETCH_CLASSES_START: return {
     ...state,

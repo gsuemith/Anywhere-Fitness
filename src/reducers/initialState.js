@@ -32,7 +32,8 @@ export const initialState = {
     level: '',
     location: '',
     dateTime: '',
-    duration: 0,
+    classSize: '',
+    duration: '',
   },
   searchForm: {
     type: '',

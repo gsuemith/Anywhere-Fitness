@@ -9,12 +9,13 @@ import { getClasses } from '../../actions'
 
 const Classes = ({ getClasses }) => {
   const classes = useSelector(state => state.classes)
+  const locations = useSelector(state => state.locations)
 
   // fetch api classes
   useEffect(() => {
     if (classes.length === 0)
-      getClasses()
-  }, [getClasses, classes])
+      getClasses();
+  }, [getClasses, classes, locations])
 
   return (
     <>
