@@ -20,7 +20,7 @@ const Classes = ({ getClasses }) => {
 	return (
 		<>
 			<Banner N={2} />
-			<SearchForm />
+			{/* <SearchForm /> */}
 			<Schedule classes={classes} />
 		</>
 	);
