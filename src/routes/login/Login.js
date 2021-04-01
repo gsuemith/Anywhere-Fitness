@@ -1,55 +1,74 @@
 import React, {useState} from "react";
+import axios from "axios";
 
 const initialFormValues = {
-	email: "",
+	username: "",
 	password: "",
+	role: "",
   };
   
-  const initialFormErrors = {
-	email: "",
-	password: "",
-  };
-  const initialDisabled = true;
-  
-  function SignIn(props) {
-	const [disabled, setDisabled] = useState(initialDisabled);
-	const [formValues, setFormValues] = useState(initialFormValues);
-	const [formErrors, setFormErrors] = useState(initialFormErrors);
-  }
-
-
 const Login = () => {
 	const [credentials, setCredentials] = useState(initialFormValues);
+	// set error
+	const [error, setError] = useState(""); 
 	const handleChange = e => {
+		const {name, value} = e.target
+		setCredentials({...credentials, [name]:value})
 
 	}
+
+const handleSubmit = e => {
+	e.preventDefault()
+	// 
+	const {password, username, role} = credentials
+	if(!password || !username || !role){
+		setError("Please Fill All Forms");
+		return 
+	}
+
+	console.log(credentials)
+	axios.post("https://anywherefitness-tt16.herokuapp.com/api/auth/login", credentials)
+	.then(res => {
+	console.log(res)	
+	})
+	.catch(error => {
+		console.log(error.message)
+	})
+}
+// form validation - set submit to be correct 
+
 	return( 
 	<section>
-    <form method="post" action="#">
-      <div className="fields">
-        <div className="field half">
-          <label htmlFor="name">Email:</label>
-          <input type="text" name="email" id="email" value={credentials.email} />
+    <form onSubmit={handleSubmit}>
+      <div className="fields"> 
+	  {/* username */}
+        <div className="field third">
+          <label htmlFor="name">Username:</label>
+          <input type="text" name="username" id="username" value={credentials.username} onChange={handleChange}/>
         </div>
-        <div className="field half">
-          <label htmlFor="email">Password:</label>
-          <input type="text" name="password" id="password" value={credentials.password} />
+		{/* password */}
+        <div className="field third">
+          <label htmlFor="username">Password:</label>
+          <input type="text" name="password" id="password" value={credentials.password} onChange={handleChange} />
         </div>
-        {/* <div className="field">
-          <label htmlFor="message">Message</label>
-          <textarea name="message" id="message" rows="6"></textarea>
-        </div> */}
+		{/* drop down */}
+	  <div className="field third">
+		  <label htmlFor="role"> Role </label>
+		  <select name="role" id="role" value={credentials.role} onChange={handleChange}>
+			  <option value="">Select a Role:</option>
+			  <option value="1">Instructor</option>
+			  <option value="2">Client</option>
+		  </select>
+		</div>
       </div>
-      {/* <ul className="actions">
-        <li><input type="submit" value="Send Message" className="primary" /></li>
-        <li><input type="reset" value="Clear" /></li>
-      </ul> */}
+	  
+	  {/* submit */}
+      <ul className="actions">
+        <li><input type="submit" value="Submit" className="primary" /></li>
+		<li>{error && <h4>{error}</h4>}</li>
+      </ul>
     </form>
   </section>)
-		// <form>
-		// <h1>Login</h1>
-		// <input type='text' name = "username" value = {credentials.username} onChange = {handleChange}/>
-		// </form>);
 };
 export default Login;
 
