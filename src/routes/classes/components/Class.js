@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./Class.css";
 
 function Class(props) {
-	const [login, setLogin] = useState(false);
+	const login = useSelector((state) => state.isLoggedIn);
 	const handleClick = (e) => {
 		e.preventDefault();
-		setLogin(true);
+
 		console.log(e);
 
 		setTimeout(() => {}, 3000);

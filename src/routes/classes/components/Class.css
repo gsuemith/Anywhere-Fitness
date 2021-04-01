@@ -1,4 +1,4 @@
-.Class-div {
+/* .Class-div {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -75,4 +75,13 @@
 	font-size: 25px;
 	border: 1px solid white;
 	width: 20vw;
+} */
+.Class-div {
+	border-bottom: solid 1px rgba(212, 212, 255, 0.1);
+	border-right: solid 1px rgba(212, 212, 255, 0.1);
+	flex: 0 0 25%;
+	min-width: 48vw;
+}
+@media (max-width: 980px) {
+	flex: 0 0 12.5%;
 }
