@@ -27,7 +27,9 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Menu />
+    <Provider store={store}>
+      <Menu />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('menu')
 );
