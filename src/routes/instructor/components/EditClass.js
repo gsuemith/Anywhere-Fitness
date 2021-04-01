@@ -26,8 +26,6 @@ const EditClass = ({ getClasses, changeClassForm, putClass }) => {
 
   const dispatch = useDispatch()
 
-  
-
   useEffect(() => {
     if (classes.length === 0){
       getClasses()
@@ -190,7 +188,6 @@ const EditClass = ({ getClasses, changeClassForm, putClass }) => {
     </div>
     <ul className="actions">
       <li><input type="submit" value="Submit" className="primary" /></li>
-      <li><input type="reset" value="Clear" /></li>
       <li>{errorMessage && <h4>{errorMessage}</h4>}</li>
     </ul>
   </form>

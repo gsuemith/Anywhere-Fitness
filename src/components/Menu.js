@@ -16,20 +16,11 @@ const Menu = () => {
 				<li>
 					<a href="/instructor">Instructors</a>
 				</li>
-				<li>
-					<a href="landing.html">Landing</a>
-				</li>
-				<li>
-					<a href="generic.html">Generic</a>
-				</li>
-				<li>
-					<a href="/classes">Classes</a>
-				</li>
 			</ul>
 			<ul className="actions stacked">
 				<li>
-					<a href="\#" className="button primary fit">
-						Get Started
+					<a href="/classes" className="button primary fit">
+						See Classes
 					</a>
 				</li>
 				<li>

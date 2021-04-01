@@ -14,11 +14,6 @@ const Home = ({ getClasses }) => {
     getClasses()
   }, [getClasses])
 
-//for development use only//
-useEffect(() => {
-  localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhcnJpY2sxMCIsInJvbGUiOjEsImlhdCI6MTYxNzI4ODY5NCwiZXhwIjoxNjE3MzEwMjk0fQ.5t8a2I9btynFKsvsKluIyUlEbHJzB7_zJ_kfIMVK_ac')
-}, [])
-//for development use only//
 
   return (
     < >

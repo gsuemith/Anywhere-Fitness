@@ -11,7 +11,7 @@ function Class(props) {
 		setTimeout(() => {}, 3000);
 	};
 	return (
-		<div className="Class-div">
+		<div className="Class-div" id="one">
 			<div className="classname">
 				<h1>{props.info.name}</h1>
 			</div>
