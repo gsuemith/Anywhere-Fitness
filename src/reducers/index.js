@@ -1,10 +1,15 @@
-import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS, POST_CLASS_FAIL, POST_CLASS_LOCATION, POST_CLASS_START, POST_CLASS_SUCCESS, CLEAR_CLASS_FORM, PUT_CLASS_START, PUT_CLASS_LOCATION, PUT_CLASS_SUCCESS, PUT_CLASS_FAIL } from '../actions'
+import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS, POST_CLASS_FAIL, POST_CLASS_LOCATION, POST_CLASS_START, POST_CLASS_SUCCESS, CLEAR_CLASS_FORM, PUT_CLASS_START, PUT_CLASS_LOCATION, PUT_CLASS_SUCCESS, PUT_CLASS_FAIL, LOG_IN } from '../actions'
 
 import { initialState } from './initialState'
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
 
+  case LOG_IN: return {
+    ...state,
+    isLoggedIn: true,
+    user: payload,
+  }  
   case CHANGE_CLASS_FORM: return {
     ...state,
     createClassForm: {

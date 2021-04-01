@@ -24,6 +24,11 @@ const Menu = () => {
 					</a>
 				</li>
 				<li>
+					<a href="/register" className="button fit">
+						Register
+					</a>
+				</li>
+				<li>
 					<a href="/login" className="button fit">
 						Log In
 					</a>
