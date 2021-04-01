@@ -1,7 +1,8 @@
-
-
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import axios from "axios";
+import { LOG_IN } from "../../actions";
+import { useHistory } from "react-router";
 
 const initialFormValues = {
 	username: "",
@@ -13,6 +14,8 @@ const Login = () => {
 	const [credentials, setCredentials] = useState(initialFormValues);
 	// set error
 	const [error, setError] = useState(""); 
+	const dispatch = useDispatch();
+	const {push} = useHistory();
 	const handleChange = e => {
 		const {name, value} = e.target
 		setCredentials({...credentials, [name]:value})
@@ -27,17 +30,24 @@ const handleSubmit = e => {
 		setError("Please Fill All Forms");
 		return 
 	}
-
+	credentials.role = parseInt(credentials.role)
 	console.log(credentials)
 	axios.post("https://anywherefitness-tt16.herokuapp.com/api/auth/login", credentials)
 	.then(res => {
-	console.log(res)	
+		console.log(res)
+		localStorage.setItem("token", res.data.token)
+		const user = res.config.data
+		dispatch({type:LOG_IN, payload: user})
+		push("/classes")
+
+
+
 	})
 	.catch(error => {
-		console.log(error.message)
+		console.log(error.response)
 	})
 }
-// form validation - set submit to be correct 
+
 
 	return( 
 	<section>
@@ -58,8 +68,8 @@ const handleSubmit = e => {
 		  <label htmlFor="role"> Role </label>
 		  <select name="role" id="role" value={credentials.role} onChange={handleChange}>
 			  <option value="">Select a Role:</option>
-			  <option value="1">Instructor</option>
-			  <option value="2">Client</option>
+			  <option value={1}>Instructor</option>
+			  <option value={2}>Client</option>
 		  </select>
 		</div>
       </div>

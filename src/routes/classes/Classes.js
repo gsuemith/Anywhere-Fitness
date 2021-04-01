@@ -10,6 +10,7 @@ import { getClasses } from "../../actions";
 const Classes = ({ getClasses }) => {
 	const classes = useSelector((state) => state.classes);
 	const locations = useSelector((state) => state.locations);
+	const user = useSelector(state => state.user);
 
 	// fetch api classes
 	useEffect(() => {

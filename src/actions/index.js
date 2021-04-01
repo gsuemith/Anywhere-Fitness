@@ -3,6 +3,8 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 
 export const URL = 'https://anywherefitness-tt16.herokuapp.com/api'
 
+export const LOG_IN = "LOG_IN"
+
 export const CHANGE_CLASS_FORM = "CHANGE_CLASS_FORM"
 export const CLEAR_CLASS_FORM = "CLEAR_CLASS_FORM"
 

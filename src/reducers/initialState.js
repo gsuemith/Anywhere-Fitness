@@ -1,5 +1,6 @@
 export const initialState = {
   user: null,
+  isLoggedIn: false,
 //   ex: {
 //     "id": 1,
 //     "username": "DavidGoggins"
