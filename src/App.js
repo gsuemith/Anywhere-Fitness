@@ -11,6 +11,7 @@ import Instructor from "./routes/instructor/Instructor";
 import Register from "./routes/register/Register"
 import Login from "./routes/login/Login"
 import Classes from "./routes/classes/Classes"
+import EditClass from "./routes/instructor/components/EditClass";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
 		<>
 			<Header />
 			<Switch>
-				<PrivateRoute path="/instructor/class/:classId" component={Instructor} />
+				<PrivateRoute path="/instructor/class/:classId" component={EditClass} />
 				<PrivateRoute path="/instructor" component={Instructor} />
 		
 				<PrivateRoute path="/client" component={Client} />
