@@ -69,7 +69,7 @@ export const putClass = (newClass, newLocation) => dispatch => {
       dispatch({type:PUT_CLASS_SUCCESS, payload:postedClass})
     })
     .catch(err => {
-      console.log('put error', err)
+      console.log('put error', err.response)
       dispatch({type: PUT_CLASS_FAIL, payload: err})
     })
 }

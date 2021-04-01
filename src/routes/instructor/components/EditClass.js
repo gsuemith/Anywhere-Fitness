@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 
 import { CLEAR_CLASS_FORM, getClasses, putClass } from '../../../actions'
 import { CHANGE_CLASS_FORM, changeClassForm } from '../../../actions'
@@ -23,6 +23,7 @@ const EditClass = ({ getClasses, changeClassForm, putClass }) => {
   const [classTypes, setClassTypes] = useState([])
   const [locationNames, setLocationNames] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
+  const { push } = useHistory()
 
   const dispatch = useDispatch()
 
@@ -102,9 +103,9 @@ const EditClass = ({ getClasses, changeClassForm, putClass }) => {
     }, true)
 
     if (formIsValid){
-      const { id, name, type, level, duration, classSize } = form
+      const { id, name, type, level, duration, classSize, attendees } = form
       const newClass = { 
-        name, type, level, classSize, attendees: 0
+        name, type, level, classSize, attendees
       }
       newClass.duration = duration >= 60 
         ?
@@ -124,6 +125,7 @@ const EditClass = ({ getClasses, changeClassForm, putClass }) => {
         {id: locationId, data: newLocation});
       setErrorMessage('');
       dispatch({type: CLEAR_CLASS_FORM})
+      push('/classes')
     } else {
       setErrorMessage('!Please make sure all fields are filled!')
     }
