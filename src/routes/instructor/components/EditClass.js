@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router'
 
-import { CLEAR_CLASS_FORM, getClasses, postClass } from '../../../actions'
-import { CHANGE_CLASS_FORM } from '../../../actions'
+import { CLEAR_CLASS_FORM, getClasses, putClass } from '../../../actions'
+import { CHANGE_CLASS_FORM, changeClassForm } from '../../../actions'
 
 const dateOptions = {
   month:'numeric', day:'numeric', year:'numeric'
@@ -14,7 +15,8 @@ const timeOptions = {
 const levels = ['Beginner', 'Beginner-Intermediate', 
   'Intermediate', 'Intermediate-Advanced', 'Advanced']
 
-const ClassForm = ({ getClasses, postClass }) => {
+const EditClass = ({ getClasses, changeClassForm, putClass }) => {
+  const { classId } = useParams()
   const classes = useSelector(state => state.classes)
   const locations = useSelector(state => state.locations)
   const form = useSelector(state => state.createClassForm)
@@ -42,10 +44,40 @@ const ClassForm = ({ getClasses, postClass }) => {
         return [...names, loc.location]
       }
       return names
-    }, []))
-    console.log(classes)
+    }, [])) 
+    
   }, [getClasses, classes, locations])
 
+  useEffect(() => {
+    //set form to class parameters
+    const classToEdit = classes.find(aClass => {
+      return parseInt(classId) === aClass.id
+    }) 
+
+    if (!classToEdit){
+      return;
+    }
+
+    Object.keys(classToEdit).forEach(key => {
+      //convert to
+      if(key === 'duration'){
+        let time = parseInt(classToEdit[key])
+        classToEdit[key] = time < 15 ? time*60 : time
+      }
+      changeClassForm({
+        name:key, value:classToEdit[key]
+      })
+    })
+    
+    changeClassForm({
+      name: 'dateTime',
+      value: (new Date(classToEdit.date + ' ' + 
+        classToEdit.startTime
+          .split('.').join('')))
+        .toISOString()
+        .slice(0, 14) + '00'
+    })
+  }, [classes, classId, changeClassForm])
 
   // to set earliest time to 12 hours from now
   const after12Hours = () => {
@@ -70,7 +102,7 @@ const ClassForm = ({ getClasses, postClass }) => {
     }, true)
 
     if (formIsValid){
-      const { name, type, level, duration, classSize } = form
+      const { id, name, type, level, duration, classSize } = form
       const newClass = { 
         name, type, level, classSize, attendees: 0
       }
@@ -80,7 +112,7 @@ const ClassForm = ({ getClasses, postClass }) => {
         : 
         `${duration} minutes`;
 
-      const { location, dateTime } = form
+      const { location, dateTime, locationId } = form
       const fullDate = new Date(dateTime);
       const newLocation = {
         location, 
@@ -88,7 +120,8 @@ const ClassForm = ({ getClasses, postClass }) => {
         startTime: fullDate.toLocaleTimeString('en-US', timeOptions)
       }
 
-      postClass(newClass, newLocation);
+      putClass({id: id, data: newClass}, 
+        {id: locationId, data: newLocation});
       setErrorMessage('');
       dispatch({type: CLEAR_CLASS_FORM})
     } else {
@@ -98,6 +131,7 @@ const ClassForm = ({ getClasses, postClass }) => {
 
   return (
   <section>
+    <section id="banner" />
   <div className="inner">
   <section>
   <form onSubmit={handleSubmit}>
@@ -163,4 +197,4 @@ const ClassForm = ({ getClasses, postClass }) => {
   )
 }
 
-export default connect(null, { getClasses, postClass })(ClassForm)
+export default connect(null, { getClasses, changeClassForm, putClass })(EditClass)
