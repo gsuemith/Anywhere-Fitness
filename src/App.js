@@ -18,6 +18,7 @@ function App() {
 		<>
 			<Header />
 			<Switch>
+				<PrivateRoute path="/instructor/class/:classId" component={Instructor} />
 				<PrivateRoute path="/instructor" component={Instructor} />
 		
 				<PrivateRoute path="/client" component={Client} />

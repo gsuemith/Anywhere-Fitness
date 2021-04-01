@@ -92,7 +92,7 @@ const ClassForm = ({ getClasses, postClass }) => {
       setErrorMessage('');
       dispatch({type: CLEAR_CLASS_FORM})
     } else {
-      setErrorMessage('Please make sure all fields are filled.')
+      setErrorMessage('!Please make sure all fields are filled!')
     }
   }
 

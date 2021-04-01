@@ -6,7 +6,6 @@ import SearchForm from "./components/SearchForm";
 import Schedule from "./components/Schedule";
 
 import { getClasses } from "../../actions";
-import axios from "axios";
 
 const Classes = ({ getClasses }) => {
 	const classes = useSelector((state) => state.classes);
