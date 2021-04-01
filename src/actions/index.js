@@ -55,7 +55,7 @@ export const putClass = (newClass, newLocation) => dispatch => {
   axiosWithAuth()
     .put(`${URL}/locations/${newLocation.id}`, newLocation.data)
     .then(res => {
-      dispatch({type:POST_CLASS_LOCATION, payload: res.data})
+      dispatch({type:PUT_CLASS_LOCATION, payload: res.data})
       newClass.data.location = res.data.id
       return axiosWithAuth()
         .put(`${URL}/classes/${newClass.id}`, newClass.data)
@@ -63,7 +63,7 @@ export const putClass = (newClass, newLocation) => dispatch => {
     .then(res => {
       console.log(res.data)
       const postedClass = res.data
-      dispatch({type:POST_CLASS_SUCCESS, payload:postedClass})
+      dispatch({type:PUT_CLASS_SUCCESS, payload:postedClass})
     })
     .catch(err => {
       console.log('put error', err)

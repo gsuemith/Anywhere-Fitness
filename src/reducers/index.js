@@ -1,4 +1,4 @@
-import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS, POST_CLASS_FAIL, POST_CLASS_LOCATION, POST_CLASS_START, POST_CLASS_SUCCESS, CLEAR_CLASS_FORM } from '../actions'
+import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS, POST_CLASS_FAIL, POST_CLASS_LOCATION, POST_CLASS_START, POST_CLASS_SUCCESS, CLEAR_CLASS_FORM, PUT_CLASS_START, PUT_CLASS_LOCATION, PUT_CLASS_SUCCESS, PUT_CLASS_FAIL } from '../actions'
 
 import { initialState } from './initialState'
 
@@ -36,6 +36,41 @@ const reducer = (state = initialState, { type, payload }) => {
   }
 
   case POST_CLASS_FAIL: return {
+    ...state,
+    isPosting: false,
+    error: payload
+  }
+
+  case PUT_CLASS_START: return {
+    ...state,
+    isPosting: true,
+    error: ''
+  }
+
+  case PUT_CLASS_LOCATION: return {
+    ...state,
+    error: '',
+    locations: state.locations.map(loc => {
+      if (loc.id === payload.id) {
+        return payload
+      }
+      return loc
+    })
+  }
+  
+  case PUT_CLASS_SUCCESS: return {
+    ...state,
+    error: '',
+    isPosting: false,
+    classes: state.classes.map(class_i => {
+      if (class_i.id === payload.id){
+        return payload
+      }
+      return class_i
+    })
+  }
+
+  case PUT_CLASS_FAIL: return {
     ...state,
     isPosting: false,
     error: payload
