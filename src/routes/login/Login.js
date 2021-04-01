@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import axios from "axios";
 import { LOG_IN } from "../../actions";
 import { useHistory } from "react-router";
+import Banner from "./Banner"
 
 const initialFormValues = {
 	username: "",
@@ -50,7 +51,10 @@ const handleSubmit = e => {
 
 
 	return( 
+	<>
+	<Banner N={5}/>
 	<section>
+	<div className = "inner">
     <form onSubmit={handleSubmit}>
       <div className="fields"> 
 	  {/* username */}
@@ -80,11 +84,10 @@ const handleSubmit = e => {
 		<li>{error && <h4>{error}</h4>}</li>
       </ul>
     </form>
-  </section>)
+	</div>
+  </section>
+  </>)
 
 };
 export default Login;
 
-// axios call to post credentials on submit
-// handle change function 
-// add submit button 

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import Banner from "./Banner";
 
 const initialFormValues = {
 	username: "",
@@ -43,8 +44,11 @@ const handleSubmit = e => {
 }
 
 
-	return( 
+	return(
+    <>
+    <Banner N={4}/>
 	<section>
+    <div className = "inner">
     <form onSubmit={handleSubmit}>
       <div className="fields"> 
 	  {/* username */}
@@ -74,7 +78,10 @@ const handleSubmit = e => {
 		<li>{error && <h4>{error}</h4>}</li>
       </ul>
     </form>
-  </section>)
+    </div>
+  </section>
+  </>
+  )
 
 };
 export default Register;
