@@ -21,7 +21,7 @@ const Classes = ({ getClasses }) => {
 		<>
 			<Banner N={2} />
 			<SearchForm />
-			<Schedule classes={classes} />
+			<Schedule classes={classes} user={user}/>
 		</>
 	);
 };
