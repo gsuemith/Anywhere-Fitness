@@ -9,6 +9,10 @@ export const LOGOUT = "LOGOUT"
 export const CHANGE_CLASS_FORM = "CHANGE_CLASS_FORM"
 export const CLEAR_CLASS_FORM = "CLEAR_CLASS_FORM"
 
+export const CHANGE_SEARCH_FORM = "CHANGE_SEARCH_FORM"
+export const CLEAR_SEARCH_FORM = "CLEAR_SEARCH_FORM"
+export const SEARCH_CLASSES = "SEARCH_CLASSES"
+
 export const POST_CLASS_START = "POST_CLASS_START"
 export const POST_CLASS_SUCCESS = "POST_CLASS_SUCCESS"
 export const POST_CLASS_LOCATION = "POST_CLASS_LOCATION"
@@ -26,6 +30,18 @@ export const FETCH_CLASSES_FAIL = "FETCH_CLASSES_FAIL"
 export const changeClassForm = target => {
   const { name, value } = target
   return {type: CHANGE_CLASS_FORM, payload:{ name, value }}
+}
+
+export const changeSearchForm = (name, value) => {
+  return {type: CHANGE_SEARCH_FORM, payload: {name, value}}
+}
+
+export const clearSearchForm = () => {
+  return {type: CLEAR_SEARCH_FORM}
+}
+
+export const searchClasses = () => {
+  return {type: SEARCH_CLASSES}
 }
 
 export const postClass = (newClass, newLocation) => dispatch => {
