@@ -36,6 +36,7 @@ export const initialState = {
     classSize: '',
     duration: '',
   },
+  searchResults: [],
   searchForm: {
     type: '',
     level: '',
@@ -43,6 +44,6 @@ export const initialState = {
     name: '',
     startDateTime: '',
     endDateTime: '',
-    maxDuration: '',
+    maxDuration: 0,
   },
 }

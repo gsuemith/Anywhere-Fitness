@@ -1,6 +1,7 @@
-import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS, POST_CLASS_FAIL, POST_CLASS_LOCATION, POST_CLASS_START, POST_CLASS_SUCCESS, CLEAR_CLASS_FORM, PUT_CLASS_START, PUT_CLASS_LOCATION, PUT_CLASS_SUCCESS, PUT_CLASS_FAIL, LOG_IN } from '../actions'
+import { CHANGE_CLASS_FORM, FETCH_CLASSES_FAIL, FETCH_CLASSES_START, FETCH_CLASSES_SUCCESS, POST_CLASS_FAIL, POST_CLASS_LOCATION, POST_CLASS_START, POST_CLASS_SUCCESS, CLEAR_CLASS_FORM, PUT_CLASS_START, PUT_CLASS_LOCATION, PUT_CLASS_SUCCESS, PUT_CLASS_FAIL, LOG_IN, CHANGE_SEARCH_FORM, SEARCH_CLASSES, CLEAR_SEARCH_FORM } from '../actions'
 
 import { initialState } from './initialState'
+import { matchesSearch } from './utils'
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -20,6 +21,25 @@ const reducer = (state = initialState, { type, payload }) => {
   case CLEAR_CLASS_FORM: return {
     ...state, 
     createClassForm: initialState.createClassForm
+  }
+
+  case CHANGE_SEARCH_FORM: return {
+    ...state,
+    searchForm: {
+      ...state.searchForm, [payload.name]: payload.value
+    }
+  }
+
+  case CLEAR_SEARCH_FORM: return {
+    ...state,
+    searchForm: initialState.searchForm
+  }
+
+  case SEARCH_CLASSES: return {
+    ...state,
+    searchResults: state.classes.filter(aClass => (
+      matchesSearch(state.searchForm, aClass)
+    ))
   }
 
   case POST_CLASS_START: return {

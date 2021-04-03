@@ -9,6 +9,7 @@ import { getClasses } from "../../actions";
 
 const Classes = ({ getClasses }) => {
 	const classes = useSelector((state) => state.classes);
+	const results = useSelector((state) => state.searchResults)
 	const locations = useSelector((state) => state.locations);
 	const user = useSelector(state => state.user);
 
@@ -21,7 +22,7 @@ const Classes = ({ getClasses }) => {
 		<>
 			<Banner N={2} />
 			<SearchForm />
-			<Schedule classes={classes} user={user}/>
+			<Schedule classes={results.length ? results:classes} user={user}/>
 		</>
 	);
 };
